@@ -7,14 +7,10 @@ on:
 #            - main
 
 jobs:
-   terraform:
-         name: "Terraform"
+  deploy:
          runs-on: "ubuntu-latest"
 
          steps:
-           - name: Checkout
-             uses: actions/checkout@v2
-
            - name: Clone terraform code
              uses: actions/checkout@v2
              with:
@@ -23,7 +19,7 @@ jobs:
                path: terraform-code
 
            - name: copy all files
-             run: cp terraform-code/* .
+             run: cp config.auto.tfvars terraform-code/
 
            - name: setup terraform
              uses: hashicorp/setup-terraform@v1
@@ -32,14 +28,14 @@ jobs:
 
            - name: Terraform Init
              id: init
-             run: terraform init
+             run: terraform init terraform-code
 
            - name: Terraform plan
              id: plan
  #            if: github.event_name == 'push'
-             run: terraform plan     
+             run: terraform plan -var-file=terraform-code/*.tfvars  terraform-code   
 
            - name: Terraform apply
              id: apply
     #         if: github.event_name == 'push'
-             run: terraform apply -auto-approve      
+             run: terraform apply -auto-approve  -var-file=terraform-code/*.tfvars  terraform-code      
