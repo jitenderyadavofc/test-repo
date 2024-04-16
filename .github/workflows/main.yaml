@@ -11,15 +11,18 @@ jobs:
          runs-on: "ubuntu-latest"
 
          steps:
+           - name: checkout
+             uses: actions/checkout@v2
+
+           - name: copy all files
+             run: cp config.auto.tfvars terraform-code/
+             
            - name: Clone terraform code
              uses: actions/checkout@v2
              with:
                repository: jitenderyadavofc/terraform-infra
                ref: main
                path: terraform-code
-
-           - name: copy all files
-             run: cp config.auto.tfvars terraform-code/
 
            - name: setup terraform
              uses: hashicorp/setup-terraform@v1
