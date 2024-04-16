@@ -13,9 +13,6 @@ jobs:
          steps:
            - name: checkout
              uses: actions/checkout@v2
-
-           - name: copy files
-             uses: cp * .
              
            - name: Clone terraform code
              uses: actions/checkout@v2
