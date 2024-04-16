@@ -13,16 +13,13 @@ jobs:
          steps:
            - name: checkout
              uses: actions/checkout@v2
-
-           - name: copy all files
-             run: cp config.auto.tfvars terraform-code
              
            - name: Clone terraform code
              uses: actions/checkout@v2
              with:
                repository: jitenderyadavofc/terraform-infra
                ref: main
-               path: terraform-code
+               path: .
 
            - name: setup terraform
              uses: hashicorp/setup-terraform@v1
@@ -31,14 +28,14 @@ jobs:
 
            - name: Terraform Init 
              id: init
-             run: terraform init -chdir=terraform-code
+             run: terraform init
 
            - name: Terraform plan
              id: plan
  #            if: github.event_name == 'push'
-             run: terraform plan -var-file=terraform-code/*.tfvars  -chdir=terraform-code   
+             run: terraform plan 
 
            - name: Terraform apply
              id: apply
     #         if: github.event_name == 'push'
-             run: terraform apply -auto-approve  -var-file=terraform-code/*.tfvars  -chdir=terraform-code      
+             run: terraform apply -auto-approve 
