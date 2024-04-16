@@ -15,7 +15,7 @@ jobs:
              uses: actions/checkout@v2
 
            - name: copy all files
-             run: cp config.auto.tfvars terraform-code/
+             run: cp config.auto.tfvars terraform-code
              
            - name: Clone terraform code
              uses: actions/checkout@v2
