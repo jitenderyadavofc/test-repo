@@ -15,6 +15,15 @@ jobs:
            - name: Checkout
              uses: actions/checkout@v2
 
+           - name: Clone terraform code
+             uses: actions/checkout@v2
+             with:
+               repository: jitenderyadavofc/terraform-infra
+               ref: main
+               path: terraform-code
+
+           - name: copy all files
+             run: cp terraform-code/* .
 
            - name: setup terraform
              uses: hashicorp/setup-terraform@v1
