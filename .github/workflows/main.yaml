@@ -48,7 +48,7 @@ jobs:
            - name: gzip the lambda funtion
              run: |
                gzip lambda/lambda-function.py
-               cd $GITHUB_WORKSPACE; ls -ltr
+               cd lambda; ls -ltr
            - name: upload artifact
              uses: actions/upload-artifact@v2
              with:
