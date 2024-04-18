@@ -52,15 +52,17 @@ jobs:
 
            - name: move zip file to root directory
              run: mv lambda.zip ../lambda.zip
+
+           - name: list
+             run: cd $GITHUB_WORKSPACE; ls -ltr */*   
                
            - name: upload artifact
              uses: actions/upload-artifact@v2
              with:
                name: lambda function zip
-               path: ../lambda.zip
+               path: lambda.zip
 
-           - name: list
-             run: cd $GITHUB_WORKSPACE; ls -ltr */*
+          
              
            - name: aws s3 list
              run: aws s3 ls
