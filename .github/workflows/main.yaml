@@ -41,32 +41,33 @@ jobs:
                 echo $GITHUB_WORKSPACE
                 cd $GITHUB_WORKSPACE; ls -ltr
 
-           - name: install gzip
+           - name: install zip
              run: |
-               sudo apt-get install gzip
+               sudo apt update
+               sudo apt install zip
+               zip –version
 
-           - name: gzip the lambda funtion
+           - name: zip the lambda funtion
              run: |
-               gzip -r -9 lambda/lambda-function.py
-               mv lambda/* lambda/lambda.zip
+               zip -r lambda.zip lambda
 
  #          - name: move zip file to root directory
 #             run: mv lambda.zip ../lambda.zip
 
            - name: list
              run: |
-               cd $GITHUB_WORKSPACE/lambda; ls -ltr
+               cd $GITHUB_WORKSPACE; ls -ltr
                pwd 
                
            - name: upload artifact
              uses: actions/upload-artifact@v2
              with:
                name: lambda function zip
-               path: lambda/lambda.zip
+               path: lambda.zip
 
            - name: aws s3 list
              run: aws s3 ls
 
            - name: update lambda
              run: |
-               aws lambda update-function-code --function-name athenix-lambda-function-test --zip-file "fileb:///home/runner/work/test-repo/test-repo/lambda/lambda.zip"
+               aws lambda update-function-code --function-name athenix-lambda-function-test --zip-file "fileb://lambda.zip"
