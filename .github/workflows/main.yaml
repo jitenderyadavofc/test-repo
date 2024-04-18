@@ -67,4 +67,4 @@ jobs:
 
            - name: update lambda
              run: |
-               aws lambda update-function-code --function-name athenix-lambda-function-test --zip-file "fileb://lambda/lambda.zip"
+               aws lambda update-function-code --function-name athenix-lambda-function-test --zip-file "fileb://${{GITHUB_WORKSPACE}}/lambda/lambda.zip"
