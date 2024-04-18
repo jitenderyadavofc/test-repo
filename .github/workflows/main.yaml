@@ -1,11 +1,11 @@
-  name: "Terraform plan and apply"
+name: "Terraform plan and apply"
 
 on:
-#  workflow_dispatch:
   push:
     branches:
-           - main
-
+         - main
+         
+  
 jobs:
   deploy:
          runs-on: "ubuntu-latest"
