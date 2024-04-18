@@ -39,6 +39,21 @@ jobs:
                 echo $AWS_ACCESS_KEY_ID
                 echo $AWS_SECRET_ACCESS_KEY
                 echo $GITHUB_WORKSPACE
+                cd $GITHUB_WORKSPACE; ls -ltr
+
+           - name: install gzip
+             run: |
+               sudo apt-get install gzip
+
+           - name: gzip the lambda funtion
+             run: |
+               gzip lambda/lambda-function.py
+               cd $GITHUB_WORKSPACE; ls -ltr
+              
 
            - name: aws s3 list
              run: aws s3 ls
+
+           - name: update lambda
+             run: |
+               aws lambda update-function-code --function-name athenix-lambda-function-test --zip-file fileb://lambda-function.zip
