@@ -5,6 +5,8 @@ on:
     branches:
          - main
          
+env:
+      ACTIONS_RUNNER_DEBUG: true
   
 jobs:
   deploy:
