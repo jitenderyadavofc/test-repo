@@ -54,7 +54,7 @@ jobs:
 #             run: mv lambda.zip ../lambda.zip
 
            - name: list
-             run: cd $GITHUB_WORKSPACE; ls -ltr
+             run: cd $GITHUB_WORKSPACE/lambda; ls -ltr
                
            - name: upload artifact
              uses: actions/upload-artifact@v2
