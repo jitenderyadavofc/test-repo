@@ -38,6 +38,7 @@ jobs:
                 export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' assume-role-output.json)
                 echo $AWS_ACCESS_KEY_ID
                 echo $AWS_SECRET_ACCESS_KEY
+                echo $GITHUB_WORKSPACE
 
            - name: aws s3 list
              run: aws s3 ls
