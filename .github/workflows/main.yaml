@@ -50,10 +50,8 @@ jobs:
 
            - name: zip the lambda funtion
              run: |
-               zip -r lambda.zip lambda
+               zip -j lambda.zip lambda/*
 
- #          - name: move zip file to root directory
-#             run: mv lambda.zip ../lambda.zip
 
            - name: list
              run: |
@@ -70,7 +68,7 @@ jobs:
              run: aws s3 ls
 
            - name: aws s3 copy
-             run: aws s3 cp lambda.zip s3://athenixlennarconfig/
+             run: aws s3api create-bucket --bucket "jitenderyadavlennarbucket" --region us-east-1
 
 #           - name: update lambda
  #            run: |
